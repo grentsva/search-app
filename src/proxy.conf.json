@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://uslugi.mosreg.ru",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

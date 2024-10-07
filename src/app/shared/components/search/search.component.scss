@@ -1,0 +1,31 @@
+$color-main: blueviolet;
+
+.search-container {
+  max-width: 720px;
+  margin: 24px auto;
+
+  mat-spinner {
+    margin: 0 auto;
+  }
+
+  mat-form-field {
+    width: 100%;
+
+    input {
+      padding: 8px;
+    }
+  }
+
+  mat-list-item {
+    cursor: pointer;
+
+    &:hover {
+      background-color: $color-main;
+    }
+  }
+
+  .no-results {
+    color: $color-main;
+    text-align: center;
+  }
+}

@@ -1,0 +1,32 @@
+<div class="search-container">
+    <mat-form-field appearance="outline">
+        <mat-label>Поиск</mat-label>
+        <input matInput [formControl]="searchControl" />
+        <mat-icon matSuffix fontIcon="search"></mat-icon>
+    </mat-form-field>
+
+    <ng-container *ngIf="isLoading | async; else searchResults">
+        <mat-spinner></mat-spinner>
+    </ng-container>
+
+    <ng-template #searchResults>
+        <ng-container *ngIf="!(isLoading | async) && (searchResults$ | async) as data">
+            <mat-list>
+                <mat-list-item *ngFor="let result of data.items" (click)="onResultClick(result.url)">
+                    <mat-card-title>
+                        <strong>{{ result.name }}</strong>
+                    </mat-card-title>
+                    <mat-card-content *ngIf="result.haystack">
+                        <span matListItemLine>{{ result.haystack }}</span>
+                    </mat-card-content>
+                </mat-list-item>
+            </mat-list>
+
+            <mat-card *ngIf="!data.items.length && (hasSearched$ | async)" class="no-results">
+                <mat-card-content>
+                    <span>По вашему запросу ничего не найдено.</span>
+                </mat-card-content>
+            </mat-card>
+        </ng-container>
+    </ng-template>
+</div>
